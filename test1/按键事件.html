@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>上下键的触发</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" @keydown.up="upKey">
+    <hr>
+    <input type="text" @keyup.down="downKey">
+    <hr>
+    <input type="text" @keyup.left="show5()">
+    <hr>
+    <input type="text" @keyup.right="show6()">
+    <hr>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
+<script>
+    var app=new Vue({
+        el:"#app",
+        methods:{
+            upKey:function () {
+                alert("上键的触发")
+            },
+            downKey:function () {
+                alert("下键的触发")
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>V-for</title>
+</head>
+<body>
+<div id="app">
+        <span v-for="A in As">
+            <ul v-for="user in A.user">
+                <li v-for="(value,key,index) in user">
+                {{index}}——{{key}}:{{value}}
+            </li>
+            </ul>
+        </span>
+    <span v-for="n in 10">{{n}}  </span>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
+<script>
+    var vm=new  Vue({
+        el:'#app',
+        data:{
+            As:[
+                {user:[{name:'a',
+                gender:'男',
+                age:20}]},
+                {user:[{name:'B',
+                        gender:'女',
+                        age:20}]}
+           ],
+        }
+    })
+</script>
+</body>
+</html>

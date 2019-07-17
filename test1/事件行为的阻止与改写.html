@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .cl1{
+            width: 100px;
+            height: 100px;
+            background: pink;
+        }
+    </style>
+</head>
+<body>
+<div class="test">
+    <div class="cl1" @click="show2">
+        <input type="button" value="button" @click.stop="show1"/>
+        <!-- 使用.stop可以阻止事件的冒泡,这样在点击input的时候不会触发外部的div点击事件-->
+    </div>
+    <a href="http://www.baidu.com" @click.prevent="show3">百度</a>
+    <!-- 使用.prevent 可以阻止默认事件,这里阻止了超链接的跳转-->
+    <div class="cl1" @click.capture="show2">
+        <!-- .capture让js的监听机制从冒泡改为倾听-->
+        <!-- 冒泡是从里往外触发,倾听是从外往里触发-->
+        <!-- 这里会先弹出div的弹窗事件,然后出发input弹窗-->
+        <input type="button" value="button" @click="show1"/>
+    </div>
+    <div class="cl1" @click.self="show2">
+        <!-- .self是将事件设置为只有自己本身触发的时候才触发-->
+        <!-- 如果是冒泡传递上来的事件不触发自身事件-->
+        <!-- 这里点击input也只会触发input事件,而不会触发div事件-->
+        <input type="button" value="button" @click="show1"/>
+    </div>
+    <a href="http://www.baidu.com" @click.prevent.once="show3">百度</a>
+    <!-- 使用.once设置默认跳转事件只被拦截一次,当第二次点击超链接的时候,就会跳转到百度-->
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
+<script>
+    var vm1 = new Vue({
+        el:".test",
+        data:{},
+        methods:{
+            show1: function () {
+                alert("点击了input")
+            },
+            show2: function () {
+                alert("外部的div点击事件由于冒泡同时触发了")
+            },
+            show3: function () {
+                alert("阻止了超链接的跳转")
+            }
+        }
+    })
+</script>
+</body>
+</html>

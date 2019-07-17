@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>隐藏按钮</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="btn-group" id="app">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" @click="handleshow">隐藏
+        <span class="caret"></span>
+    </button><br/><br/>
+    <p v-if="show">This is a passage!</p>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
+<script>
+    var vm=new  Vue({
+        el:'#app',
+        data:{
+            show:true
+        },
+        methods:{
+            handleshow:function () {
+                this.show=false
+            }
+        }
+    })
+</script>
+</body>
+</html>

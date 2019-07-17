@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <button :class="classes"></button>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
+<script>
+//运行结果<button class="btn btn-large btn-disabled"></button>
+    var app =new  Vue({
+        el:'#app',
+        data:{
+            size:"large",
+            disabled:true
+        },
+        computed:{
+            classes:function () {
+                return[
+                    'btn',{
+                    ['btn-'+this.size]:this.size!=="",
+                        ['btn-disabled']:this.disabled
+                    }
+                ];
+            }
+        }
+    });
+
+</script>
+
+</body>
+</html>

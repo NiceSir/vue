@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Date</title>
+</head>
+<body>
+<div id="app">
+
+    <h1>{{name|dealDate}}</h1>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
+<script>
+
+    //当数字小于10时在前面补0
+    var supply=function (value) {
+        return  (value<10)?"0"+value:value;
+    }
+    var app=new  Vue({
+        el:'#app',
+        data:{
+            name:new Date()
+        },
+        filters:{
+            dealDate:function () {
+                var date=new Date();
+                var year=date.getFullYear();
+                var month=date.getMonth()+1;
+                var day=date.getDate();
+                var hour=date.getHours();
+                var minute=supply(date.getMinutes());
+                var second=supply(date.getSeconds());
+                return year+"-"+month+"-"+day+"  "+hour+":"+minute+":"+second;
+            }
+        },
+        mounted: function () {
+            var _this=this;
+            this.timer=setInterval(function () {
+                _this.name=new Date();
+            },1000);
+        },
+        beforeDestroy:function () {
+            if(this.timer){
+                clearInterval(this.timer);
+            }
+        }
+    })
+</script>
+</body>
+</html>

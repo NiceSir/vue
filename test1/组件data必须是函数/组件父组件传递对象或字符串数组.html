@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件父组件传递对象或字符串数组</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="message">
+    <my-component :my-message="message"></my-component>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
+<script>
+    var app=new Vue({
+        el:"#app",
+        data:{
+            message:""
+        }
+    });
+    Vue.component("my-component",{
+        props:['myMessage'],
+        template:"<p>{{myMessage}}</p>"
+    })
+</script>
+</body>
+</html>

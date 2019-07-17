@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <my-component :width="100" :height="200"></my-component>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
+<script>
+    Vue.component("my-component",{
+        props:['width',"height"],
+        template:"<div :style='style'>组件内容</div>",
+        computed:{
+            style:function () {
+                return{
+                    width:this.width+"px",
+                    height:this.height+"px",
+                }
+            }
+        }
+    })
+    var app=new Vue({
+        el:"#app"
+    })
+
+</script>
+</body>
+</html>

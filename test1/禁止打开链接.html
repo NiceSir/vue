@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>禁止打开连接</title>
+</head>
+<body>
+<div id="app">
+    <a link="www.baidu.com" @click="handleclick('禁止打开',$event)">打开链接</a>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
+<script>
+    var app=new Vue({
+        el:"#app",
+        methods:{
+            handleclick:function (message,event) {
+                event.preventDefault();
+                window.alert(message);
+                // alert(message);
+            }
+        }
+    })
+</script>
+</body>
+</html>

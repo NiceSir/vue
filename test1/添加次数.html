@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点击次数</title>
+</head>
+<body>
+<div id="app">
+    <p>点击次数：{{counter}}</p>
+    <button @click="add()">增加1</button>
+    <button @click="add(10)">+10</button>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
+<script>
+    var app=new Vue({
+        el:"#app",
+        data:{
+            counter:0
+        },
+        methods:{
+            add:function (count) {
+                count=count||1;
+                this.counter+=count;
+            }
+        }
+    })
+</script>
+</body>
+</html>

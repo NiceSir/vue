@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <p>总数：{{total}}</p>
+    <my-component @increase="handleGetTotal" @reduce="handleGetTotal"></my-component>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
+<script>
+    Vue.component("my-component",{
+        template:"<div><button @click='handleIncrease'>+1</button><button @click='handleReduce'>-1</button></div>",
+        data:function () {
+            return{
+                counter:0
+            }
+        },
+        methods:{
+            handleIncrease:function () {
+                this.counter++;
+                this.$emit('increase',this.counter)
+                console.log(this);   //VueComponent
+            },
+            handleReduce:function () {
+                this.counter--;
+                this.$emit('reduce',this.counter)
+                console.log(this);   //VueComponent
+            }
+        }
+    });
+    var app = new Vue({
+        el: '#app',
+        data: {
+            total: 0
+        },
+        methods: {
+            handleGetTotal: function(total) {
+                this.total = total;
+                console.log(this);  //Vue
+            }
+        }
+    })
+</script>
+</body>
+</html>

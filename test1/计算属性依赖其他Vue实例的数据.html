@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计算属性依赖其他Vue实例的数据</title>
+</head>
+<body>
+<div id="app1"></div>
+<div id="app2"><h1>{{reversedText}}</h1></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
+<script>
+    var app1=new  Vue({
+        el:'#app1',
+        data:{
+            text:"123,456"
+        }
+    });
+    var app2=new  Vue({
+        el:'#app2',
+        computed:{
+            reversedText(){
+                //依赖app1的数据对其进行倒序
+                return app1.text.split(",").reverse().join(",");
+            }
+        }
+    });
+</script>
+</body>
+</html>

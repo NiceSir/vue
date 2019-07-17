@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="name" placeholder="Please input your name">
+    <h1>Hello,{{name}}——无once</h1>
+    <h1 v-once>Hello,{{name}}——once，只渲染一次</h1>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
+<script>
+    var vm=new  Vue({
+        el:'#app',
+        data:{
+            name:"Jiro"
+        }
+    })
+</script>
+</body>
+</html>

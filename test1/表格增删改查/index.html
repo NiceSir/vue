@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>购物车示例</title>
+    <link rel="stylesheet" href="index.css" type="text/css">
+</head>
+<body>
+<div id="app" v-cloak>
+        <template v-if="list.length">
+        <table>
+            <tbody v-for="(item,tindex) in list">
+                <tr>
+                    <th>{{item.name}}</th>
+                    <th>商品名称</th>
+                    <th>商品单价</th>
+                    <th>购买数量</th>
+                    <th>操作</th>
+                    <th><input type="checkbox" @click="thoseChoose(tindex)" v-model="item.thosePick" class="choose">全选</th>
+                </tr>
+                <tr v-for="(l,index) in item.products">
+                    <td>{{index+1}}</td>
+                    <td>{{l.name}}</td>
+                    <td>{{l.price}}</td>
+                    <td>
+                        <button @click="handleReduce(index,tindex)" :disabled="l.count===1">-</button>
+                        {{l.count}}
+                        <button @click="handleAdd(index,tindex)">+</button>
+                    </td>
+                    <td>
+                        <button @click="handleRemove(index,tindex)">删除该商品</button>
+                    </td>
+                    <td>
+                        <input type="checkbox" class="choose" v-model="l.pick">
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th><input type="checkbox" @click="allChoose()" class="choose" v-model="allPick">全选</th>
+            </tr>
+            </tfoot>
+        </table>
+        <div>总价：{{totalPrices}}元</div>
+        </template>
+    <div v-else>购物车为空！</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
+<script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="description" content="扩展bus实例可以给他添加data、methods、computed等选项，
+    而且都是可以公用的，在协同开发中尤为重要，可以共享类似于用户登录的昵称、性别、邮箱等等，还有用户的授权token等">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    {{message}}
+    <component-a></component-a>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
+<script>
+    var bus=new Vue();
+
+    Vue.component("component-a",{
+        template:'<button @click="handleEvent">传递事件</button>',
+        methods:{
+            handleEvent:function () {
+                bus.$emit("on-message","来自组件my-component的内容");
+            }
+        }
+    });
+
+
+    var app=new Vue({
+        el:"#app",
+        data:{
+            message:""
+        },
+        //mounted是dom渲染后
+        mounted:function(){
+                _this=this;
+                //监听来自bus实例的事件
+                bus.$on("on-message",function (msg) {
+                    _this.message=msg;
+                })
+            }
+        })
+</script>
+</body>
+</html>

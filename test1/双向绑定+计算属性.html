@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="package1 in package1s">{{package1.name}}：
+            <input type="text" v-model="package1.price" placeholder="Please input your price">元，共
+            <input type="text" v-model="package1.count" placeholder="Please input your count">个
+        </li>
+        <li v-for="package2 in package2s">{{package2.name}}：
+            <input type="text" v-model="package2.price" placeholder="Please input your price">元，共
+            <input type="text" v-model="package2.count" placeholder="Please input your count">个
+        </li>
+    </ul>
+    <h1>总价：{{prices}}元</h1>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
+<script>
+    var vm=new  Vue({
+        el:'#app',
+        data:{
+            package1s:[
+                { name:"iphone 7",
+                    price: 7199,
+                    count:2
+                },{ name:"ipad",
+                    price: 2888,
+                    count:1
+                }
+            ],
+            package2s:[
+                { name:"apple",
+                    price:4,
+                    count:7
+                },{ name:"banana",
+                    price:3,
+                    count:10
+                }
+            ]
+        },
+        computed:{
+            prices:function () {
+                var prics=0;
+                for(var j=0;j<this.package1s.length;j++){
+                        prics+=this.package1s[j].price*this.package1s[j].count;
+                }
+                for(var j=0;j<this.package2s.length;j++){
+                    prics+=this.package2s[j].price*this.package2s[j].count;
+                }
+                return prics;
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+       <ul v-for="book in books">
+           <li>{{book.name}}</li>
+           <li>{{book.author}}</li>
+       </ul>
+    <ul v-for="book in computebooks">
+        <li>{{book.name}}</li>
+        <li>{{book.author}}</li>
+    </ul>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
+<script>
+    var app=new Vue({
+        el:"#app",
+        data:{
+            books:[{
+              name:'《Vue.js实战》',
+                author:'梁浩'
+            },
+                {
+                    name:'《JavaScript语言精粹》',
+                    author:'11'
+                },
+                {
+                    name:'《JavaScript高级程序设计》',
+                    author:'22'
+                },
+            ]
+        },
+        computed:{
+            computebooks:function () {
+                return this.books.filter(function (item) {
+                    return item.name.match(/JavaScript/);//判断有JavaScript的name
+                });
+            }
+        }
+    });
+    // app.books=app.books.filter(function (item) {
+    //     return item.name.match(/JavaScript/);//判断有JavaScript的name
+    // });
+    app.books=app.books.concat({                //合并
+        name:'《语言精粹》',
+        author:'55'
+    });
+    // app.books=app.books.slice(1);               //由数组序列为1开始重建
+</script>
+</body>
+</html>

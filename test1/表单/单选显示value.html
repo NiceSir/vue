@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单选显示value</title>
+</head>
+<body>
+<div id="app">
+    <input type="radio" v-model="picked" value="html" id="html">
+    <label>HTML</label>
+    <br>
+    <input type="radio" v-model="picked" value="js" id="js">
+    <label>JavaScript</label>
+    <br>
+    <input type="radio" v-model="picked" value="css" id="css">
+    <label>CSS</label>
+    <br>
+    <p>选择的项是：{{picked}}</p>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
+<script>
+    var app=new Vue({
+        el:"#app",
+        data:{
+            picked: "js"
+        }
+    })
+</script>
+</body>
+</html>

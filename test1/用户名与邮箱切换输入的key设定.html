@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app1">
+    <h1>没有key的操作</h1>
+    <template v-if="type==='name'">
+        <label>用户名：</label>
+        <input placeholder="请输入用户名" type="text">
+    </template>
+    <template v-else>
+        <label>邮箱：</label>
+        <input placeholder="请输入邮箱" type="text">
+    </template>
+    <button @click="changeButton">切换输入类型</button>
+</div>
+<div id="app2">
+    <h1>有key的操作</h1>
+    <template v-if="type==='name'">
+        <label>用户名：</label>
+        <input placeholder="请输入用户名" type="text" key="name">
+    </template>
+    <template v-else>
+        <label>邮箱：</label>
+        <input placeholder="请输入邮箱" type="text" key="email">
+    </template>
+    <button @click="changeButton">切换输入类型</button>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
+<script>
+    var app1=new  Vue({
+        el:'#app1',
+        data:{
+            type:"name"
+        },
+        methods:{
+            changeButton(){
+                this.type=this.type==='name'?'mail':'name';
+            }
+        }
+    })
+    var app2=new  Vue({
+        el:'#app2',
+        data:{
+            type:"name"
+        },
+        methods:{
+            changeButton(){
+                this.type=this.type==='name'?'mail':'name';
+            }
+        }
+    })
+</script>
+</body>
+</html>

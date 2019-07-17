@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    {{message}}
+
+    <button @click="handleRef">通过ref来获取子组件的实例</button>
+
+    <my-component ref="comA"></my-component>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
+<script>
+    Vue.component("my-component",{
+        template:"<div>子组件</div>",
+        data:function () {
+            return{
+                message:"这是子组件A的内容"
+            }
+        }
+    });
+    var app=new Vue({
+        el:"#app",
+        data:{
+            message: ""
+        },
+        methods:{
+            handleRef:function () {
+                this.message=this.$refs.comA.message;
+            },
+        }
+    })
+</script>
+</body>
+</html>

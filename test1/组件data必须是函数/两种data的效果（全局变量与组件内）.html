@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>（全局变量与组件内）</title>
+</head>
+<body>
+<div id="app">
+    <my-component></my-component>
+    <my-component></my-component>
+    <my-component></my-component>
+    <br><br>
+    <my-component1></my-component1>
+    <my-component1></my-component1>
+    <my-component1></my-component1>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
+<script>
+    var data={
+        counter:0
+    };
+    Vue.component("my-component",{
+        template:"<button @click='counter++'>{{counter}}</button>",
+        data:function () {
+            return data;
+        }
+    });
+    Vue.component("my-component1",{
+        data:function () {
+            return{
+                counter: 0
+            }
+        },
+        template: "<button @click='counter++'>{{counter}}</button>"
+    })
+    var app=new Vue({
+        el:"#app",
+    })
+</script>
+</body>
+</html>

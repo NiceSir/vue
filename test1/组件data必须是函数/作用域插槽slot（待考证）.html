@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <my-list :book="books">
+        <!--作用域插槽也可以是具名的slot-->
+        <template slot="book" scope="props">
+            <li>{{props.bookName}}</li>
+        </template>
+    </my-list>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
+<script>
+    Vue.component("my-list",{
+        props:{
+            books:{
+                type:Array,
+                default:function () {
+                    return[];
+                }
+            }
+        },
+        template:"<ul>" +
+            "<slot name='book' v-for='book in books' :book-name='book.name'></slot>" +
+            "</ul>"
+    });
+    var app=new Vue({
+        el:"#app",
+        data:{
+            books:[
+                { name:'《JavaScript高级程序设计》'},
+                { name:'《JavaScript语言精粹》'},
+                { name:'《Vue.js实战》'}
+                ]
+        }
+    })
+</script>
+</body>
+</html>

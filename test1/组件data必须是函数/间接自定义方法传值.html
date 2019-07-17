@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <p>总数：{{total}}</p>
+    <my-component @input="handleGetTotal"></my-component>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
+<script>
+    Vue.component("my-component",{
+        template:'<button @click="handleCounter">+1</button>',
+        data:function () {
+            return{
+                counter:0
+            }
+        },
+        methods:{
+            handleCounter:function () {
+                this.counter++;
+                this.$emit("input",this.counter);
+            }
+        }
+    });
+    var app=new Vue({
+        el:"#app",
+        data:{
+            total:0
+        },
+        methods:{
+            handleGetTotal:function (total) {
+                this.total=total;
+            }
+        }
+    })
+</script>
+</body>
+</html>

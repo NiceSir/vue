@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="A in As">{{A.name}}</li>
+    </ul>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
+<script>
+    var vm=new  Vue({
+        el:'#app',
+        data:{
+            As:[
+                {name:'a'},
+                {name:'B'},
+                {name:'c'}
+            ]}
+
+
+    })
+    vm.As.push({name:'G'});//增加数组项
+    vm.As.pop();//删除数组最后一项
+    vm.As.shift();//删除数组第一项
+    vm.As.unshift({name:'A'});//添加数组第一项
+    // vm.As.splice(1,1,{name:'5'});//替换数组第二项
+    //  vm.As.splice(0,0,{name:'1'});//在数组0下标中添加一项
+   // vm.As.splice(0);//删除数组所有项
+
+     vm.As.reverse();//倒序输出
+
+</script>
+</body>
+</html>

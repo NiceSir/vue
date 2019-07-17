@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model.number="name" placeholder="Please input your name">
+    <h1>变量的类型：{{typeof name}}</h1>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
+<script>
+    var vm=new  Vue({
+        el:'#app',
+        data:{
+            name:123
+        },
+    })
+</script>
+</body>
+</html>
